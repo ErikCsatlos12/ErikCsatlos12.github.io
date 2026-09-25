@@ -24,7 +24,7 @@
       gap: 24px;
     }
 
-    /* Profilkártya (Feladat 2) */
+    /* Profilkártya */
     .profile-card {
       display: flex;
       gap: 18px;
@@ -64,7 +64,7 @@
       color: #60a5fa;
     }
 
-    /* CV Szekció kártyák (Feladat 3) */
+    /* CV Szekció kártyák */
     .cv-section {
       background: #11161d;
       border: 1px solid #1f2937;
@@ -102,7 +102,7 @@
       margin-bottom: 6px;
     }
 
-    /* Készségek Chips (Feladat 3) */
+    /* Készségek Chips */
     .chip {
       display: inline-block;
       margin: 4px 6px 4px 0;
@@ -118,7 +118,7 @@
       background: rgba(255,255,255,.08);
     }
 
-    /* Reszponzív (Feladat 2) */
+    /* Reszponzív */
     @media (max-width: 600px){
       .profile-card {
         flex-direction: column;
@@ -148,13 +148,12 @@
 <body>
   <main id="app">
     
-    <!-- Feladat 2: Profilkártya -->
+    <!-- Profilkártya -->
     <section class="profile-card">
-      <!-- Placeholder kép, ezt cserélheted saját fotóra, ha beteszed az images mappába -->
-      <img class="avatar" src="https://i.pravatar.cc/200?img=11" alt="Profilkép" />
+      <img class="avatar" src="profilkep.jpg" alt="Profilkép" />
       <div class="meta">
         <h1 class="name">Erik Csatlos</h1>
-        <p class="role">Szoftverfejlesztő · Informatikus Hallgató</p>
+        <p class="role">Shopify Developer · Informatikus Hallgató</p>
         <div class="links">
           <a href="mailto:csatlos.erik.24@stud.umfst.ro" target="_blank" rel="noopener">Email</a> ·
           <a href="https://linkedin.com/in/erikcsatlos" target="_blank" rel="noopener">LinkedIn</a> ·
@@ -163,7 +162,7 @@
       </div>
     </section>
 
-    <!-- Feladat 3: CV Szekciók -->
+    <!-- CV Szekciók -->
     
     <section class="cv-section">
       <h2>Bemutatkozás</h2>
@@ -174,8 +173,8 @@
       <h2>Tapasztalat</h2>
       
       <div class="job">
-        <h3>Asszisztens Programozó</h3>
-        <div class="job-meta">Dalbe Digital Agency · 2026. Március – Jelenleg</div>
+        <h3>Shopify Developer</h3>
+        <div class="job-meta">Dalbe Digital Agency · 2026. Március – Jelenleg (6 hónapja)</div>
         <ul>
           <li>E-kereskedelmi (Shopify) áruházak egyedi fejlesztése és testreszabása.</li>
           <li>Liquid sablonok írása, reszponzív HTML/CSS és JavaScript kódolás.</li>
@@ -205,7 +204,7 @@
       <h2>Oktatás & Minősítések</h2>
       <div class="job">
         <h3>Számítástechnika (BSc)</h3>
-        <div class="job-meta">UMFST (George Emil Palade Egyetem), Marosvásárhely · 2022 – Jelenleg</div>
+        <div class="job-meta">UMFST (George Emil Palade Egyetem), Marosvásárhely · 2023 – Jelenleg (3. évfolyam)</div>
         <ul>
           <li>Főbb tárgyak: Adatszerkezetek, Gráfelmélet, Hálózatok (Cisco Packet Tracer), Operációs Rendszerek, Párhuzamos Programozás (C, POSIX).</li>
         </ul>
@@ -213,7 +212,6 @@
       <div class="job">
         <h3>Szakmai Tanúsítványok</h3>
         <ul>
-          <li><strong>ISTQB</strong> Certified Tester Foundation Level (CTFL 4.0.1)</li>
           <li><strong>Shopify</strong> Development Fundamentals (Credly Badge)</li>
         </ul>
       </div>
