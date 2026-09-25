@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Erik Csatlos – Portfólió / CV</title>
+  <meta name="description" content="Erik Csatlos - Informatikus hallgató és szoftverfejlesztő (Flutter, Python, webfejlesztés) szakmai önéletrajza és portfóliója.">
+  <meta name="color-scheme" content="dark">
+  <style>
+    body {
+      background: #0b0f14;
+      color: #e6e9ef;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      margin: 0;
+      padding: 24px;
+      line-height: 1.6;
+    }
+    
+    #app {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* Profilkártya (Feladat 2) */
+    .profile-card {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      background: #11161d;
+      border: 1px solid #1f2937;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    .profile-card .avatar {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #1f2937;
+    }
+    .profile-card .meta {
+      flex: 1;
+    }
+    .profile-card .name {
+      margin: 0;
+      font-size: 28px;
+    }
+    .profile-card .role {
+      margin: 4px 0 12px;
+      color: #9aa4b2;
+      font-weight: 500;
+    }
+    .profile-card .links a {
+      color: #e6e9ef;
+      text-decoration: none;
+      padding-right: 8px;
+    }
+    .profile-card .links a:hover {
+      text-decoration: underline;
+      color: #60a5fa;
+    }
+
+    /* CV Szekció kártyák (Feladat 3) */
+    .cv-section {
+      background: #11161d;
+      border: 1px solid #1f2937;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 5px 15px rgba(0,0,0,.2);
+    }
+    .cv-section h2 {
+      margin-top: 0;
+      border-bottom: 1px solid #1f2937;
+      padding-bottom: 12px;
+      color: #f8fafc;
+      font-size: 20px;
+    }
+    .job {
+      margin-bottom: 20px;
+    }
+    .job:last-child {
+      margin-bottom: 0;
+    }
+    .job h3 {
+      margin: 0 0 4px 0;
+      font-size: 18px;
+    }
+    .job-meta {
+      color: #9aa4b2;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+    .job ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+    .job li {
+      margin-bottom: 6px;
+    }
+
+    /* Készségek Chips (Feladat 3) */
+    .chip {
+      display: inline-block;
+      margin: 4px 6px 4px 0;
+      padding: 6px 12px;
+      border: 1px solid #1f2937;
+      border-radius: 999px;
+      background: rgba(255,255,255,.03);
+      font-size: 13px;
+      color: #cbd5e1;
+      transition: background 0.2s;
+    }
+    .chip:hover {
+      background: rgba(255,255,255,.08);
+    }
+
+    /* Reszponzív (Feladat 2) */
+    @media (max-width: 600px){
+      .profile-card {
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: center;
+      }
+      .profile-card .avatar {
+        width: 84px;
+        height: 84px;
+        margin: 0 auto;
+      }
+      .profile-card .meta {
+        width: 100%;
+      }
+      .profile-card .links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+      }
+      .profile-card .links a {
+        padding-right: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main id="app">
+    
+    <!-- Feladat 2: Profilkártya -->
+    <section class="profile-card">
+      <!-- Placeholder kép, ezt cserélheted saját fotóra, ha beteszed az images mappába -->
+      <img class="avatar" src="https://i.pravatar.cc/200?img=11" alt="Profilkép" />
+      <div class="meta">
+        <h1 class="name">Erik Csatlos</h1>
+        <p class="role">Szoftverfejlesztő · Informatikus Hallgató</p>
+        <div class="links">
+          <a href="mailto:csatlos.erik.24@stud.umfst.ro" target="_blank" rel="noopener">Email</a> ·
+          <a href="https://linkedin.com/in/erikcsatlos" target="_blank" rel="noopener">LinkedIn</a> ·
+          <a href="https://github.com/ErikCsatlos12" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Feladat 3: CV Szekciók -->
+    
+    <section class="cv-section">
+      <h2>Bemutatkozás</h2>
+      <p>Informatikus hallgató vagyok a marosvásárhelyi UMFST egyetemen. Szenvedélyem a mobil- és webfejlesztés, különös tekintettel az innovatív, interaktív megoldásokra. Egyaránt érdekel a modern keretrendszerek (Flutter, Shopify Liquid) alkalmazása és a háttérrendszerek (Python, Java) biztosítása.</p>
+    </section>
+
+    <section class="cv-section">
+      <h2>Tapasztalat</h2>
+      
+      <div class="job">
+        <h3>Asszisztens Programozó</h3>
+        <div class="job-meta">Dalbe Digital Agency · 2026. Március – Jelenleg</div>
+        <ul>
+          <li>E-kereskedelmi (Shopify) áruházak egyedi fejlesztése és testreszabása.</li>
+          <li>Liquid sablonok írása, reszponzív HTML/CSS és JavaScript kódolás.</li>
+          <li>Munkahelyi dokumentumgeneráló eszközök építése Python (Flask) alapokon.</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <h3>Szabadúszó Szoftvertesztelő (QA)</h3>
+        <div class="job-meta">Test IO · 2026. Január – Jelenleg</div>
+        <ul>
+          <li>Webes és mobil alkalmazások minőségbiztosítása, funkcionális és UI/UX tesztelése.</li>
+          <li>Részletes hibajelentések és reprodukciós képernyővideók készítése.</li>
+        </ul>
+      </div>
+      
+      <div class="job">
+        <h3>Turizmus Szervező</h3>
+        <div class="job-meta">Idegenforgalmi szektor · 1 év tapasztalat</div>
+        <ul>
+          <li>Kommunikációs készségek és ügyfélkapcsolat-kezelés napi szintű gyakorlása.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="cv-section">
+      <h2>Oktatás & Minősítések</h2>
+      <div class="job">
+        <h3>Számítástechnika (BSc)</h3>
+        <div class="job-meta">UMFST (George Emil Palade Egyetem), Marosvásárhely · 2022 – Jelenleg</div>
+        <ul>
+          <li>Főbb tárgyak: Adatszerkezetek, Gráfelmélet, Hálózatok (Cisco Packet Tracer), Operációs Rendszerek, Párhuzamos Programozás (C, POSIX).</li>
+        </ul>
+      </div>
+      <div class="job">
+        <h3>Szakmai Tanúsítványok</h3>
+        <ul>
+          <li><strong>ISTQB</strong> Certified Tester Foundation Level (CTFL 4.0.1)</li>
+          <li><strong>Shopify</strong> Development Fundamentals (Credly Badge)</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="cv-section">
+      <h2>Készségek</h2>
+      <div class="chips-container">
+        <span class="chip">Flutter</span>
+        <span class="chip">Dart</span>
+        <span class="chip">Java</span>
+        <span class="chip">Android Studio</span>
+        <span class="chip">Python (Flask)</span>
+        <span class="chip">Shopify Liquid</span>
+        <span class="chip">HTML5 / CSS3</span>
+        <span class="chip">JavaScript</span>
+        <span class="chip">C (Sockets / Threads)</span>
+        <span class="chip">Git / GitHub</span>
+      </div>
+    </section>
+
+  </main>
+</body>
+</html>
