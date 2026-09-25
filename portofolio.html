@@ -184,7 +184,7 @@
 
     /* Készségek Chips */
     .chip-group {
-      margin-bottom: 20px;
+      margin-bottom: 24px;
     }
     .chip-group:last-child {
       margin-bottom: 0;
@@ -192,7 +192,7 @@
     .chip-group-title {
       font-size: 14px;
       color: var(--text-main);
-      margin-bottom: 10px;
+      margin-bottom: 12px;
       font-weight: 500;
     }
     .chip {
@@ -210,6 +210,32 @@
       background: rgba(255,255,255,.05);
       border-color: var(--text-muted);
       color: var(--text-main);
+    }
+
+    /* Nyelvtudás kártyák */
+    .lang-chip {
+      display: inline-flex;
+      flex-direction: column;
+      margin: 0 10px 10px 0;
+      padding: 10px 16px;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      background: rgba(255,255,255,.02);
+      transition: all 0.2s;
+    }
+    .lang-chip:hover {
+      background: rgba(255,255,255,.05);
+      border-color: var(--accent);
+    }
+    .lang-chip .lang-name {
+      font-weight: 600;
+      color: var(--text-main);
+      font-size: 14px;
+      margin-bottom: 2px;
+    }
+    .lang-chip .lang-level {
+      font-size: 12px;
+      color: var(--accent);
     }
 
     /* Credly Badge Kártya */
@@ -465,6 +491,41 @@
             <span class="badge-card-subtitle">Credly Verified</span>
           </div>
         </a>
+      </div>
+
+      <!-- Új szekció: Nyelvtudás -->
+      <div class="chip-group">
+        <div class="chip-group-title">
+          <span lang="hu">Nyelvtudás</span>
+          <span lang="en">Languages</span>
+        </div>
+        
+        <div class="lang-chip">
+          <span class="lang-name">
+            <span lang="hu">Magyar</span><span lang="en">Hungarian</span>
+          </span>
+          <span class="lang-level">
+            <span lang="hu">Anyanyelv</span><span lang="en">Native</span>
+          </span>
+        </div>
+        
+        <div class="lang-chip">
+          <span class="lang-name">
+            <span lang="hu">Angol</span><span lang="en">English</span>
+          </span>
+          <span class="lang-level">
+            <span lang="hu">Szakmai</span><span lang="en">Professional</span>
+          </span>
+        </div>
+        
+        <div class="lang-chip">
+          <span class="lang-name">
+            <span lang="hu">Román</span><span lang="en">Romanian</span>
+          </span>
+          <span class="lang-level">
+            <span lang="hu">Társalgási</span><span lang="en">Conversational</span>
+          </span>
+        </div>
       </div>
 
       <div class="chip-group">
