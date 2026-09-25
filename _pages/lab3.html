@@ -1,69 +1,155 @@
 ---
 layout: default
-permalink: /lab2/
-title: "Ismétlés"
+permalink: /lab3/
+title: "Ismétlés - Labor 3"
 nav_exclude: true
 ---
 
 <style>
     /* ----------------------------------------- */
-    /* 4) CSS SZELEKTOROK TODO-k                 */
+    /* ÁLTALÁNOS MODERNIZÁLÁS ÉS ŰRLAPOK         */
     /* ----------------------------------------- */
-    .card-item { 
-        border: 1px solid #ddd; 
-        padding: 1rem; 
-        border-radius: .5rem; 
-        margin-bottom: 10px;
+    input[type="text"] {
+        width: 100%;
+        max-width: 300px;
+        padding: 10px 15px;
+        margin: 5px 0 15px 0;
+        border: 1px solid #cbd5e1;
+        border-radius: 6px;
+        font-family: inherit;
+        transition: all 0.3s ease;
+        background: #ffffff;
+        color: #333;
     }
-    #k2 { outline: 2px solid royalblue; }
-    .card-item[data-level="advanced"] { background: #f3f7ff; }
-    .card-item:first-child::before { content: "★ "; color: royalblue; }
+    input[type="text"]:focus {
+        outline: none;
+        border-color: #3b82f6;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+    }
+    button {
+        background-color: #3b82f6;
+        color: white;
+        border: none;
+        padding: 10px 18px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: all 0.2s ease;
+    }
+    button:hover {
+        background-color: #2563eb;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
 
     /* ----------------------------------------- */
-    /* 5) BOX-MODELL + FLEXBOX FEJLÉC TODO-k     */
+    /* 4) CSS SZELEKTOROK                        */
+    /* ----------------------------------------- */
+    .card-item { 
+        border: 1px solid #e2e8f0; 
+        padding: 15px; 
+        border-radius: 8px; 
+        margin-bottom: 15px;
+        background-color: #f8fafc;
+        color: #1e293b;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        transition: transform 0.2s ease;
+    }
+    .card-item:hover { transform: translateX(5px); }
+    #k2 { outline: 2px solid #3b82f6; outline-offset: 2px; }
+    .card-item[data-level="advanced"] { background: #eff6ff; border-color: #bfdbfe; }
+    .card-item:first-child::before { content: "★ "; color: #eab308; }
+
+    /* ----------------------------------------- */
+    /* 5) BOX-MODELL + FLEXBOX FEJLÉC            */
     /* ----------------------------------------- */
     .flex-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        background: #333;
+        background: linear-gradient(135deg, #1e293b, #334155);
         color: white;
-        padding: 15px; /* Növeld meg a paddinget a böngésző DevTools-ban! */
-        margin-bottom: 20px;
+        padding: 20px 25px; 
+        margin-bottom: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.15);
     }
-    .flex-header nav { display: flex; gap: 15px; }
+    .flex-header nav { display: flex; gap: 20px; }
+    .flex-header nav a { color: #e2e8f0; text-decoration: none; font-weight: 500; transition: color 0.2s; }
+    .flex-header nav a:hover { color: #60a5fa; }
     
-    /* Mobilos töréspont (≤700px) - oszlopba törik */
     @media (max-width: 700px) {
-        .flex-header { flex-direction: column; gap: 10px; }
+        .flex-header { flex-direction: column; gap: 15px; text-align: center; }
     }
 
     /* ----------------------------------------- */
-    /* 6) CSS GRID RESZPONZÍV TODO-k             */
+    /* 6) CSS GRID RESZPONZÍV                    */
     /* ----------------------------------------- */
     .grid-cards { 
         display: grid; 
-        gap: 1rem; 
-        /* Alapértelmezett (mobil, ≤600px): 1 oszlop */
+        gap: 1.5rem; 
         grid-template-columns: 1fr;
     }
-    .grid-card { background: #e2e8f0; padding: 20px; border-radius: 8px; text-align: center; }
+    .grid-card { 
+        background: #ffffff; 
+        color: #333;
+        padding: 25px; 
+        border-radius: 12px; 
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        border: 1px solid #e2e8f0;
+        transition: all 0.3s ease;
+        font-weight: 500;
+    }
+    .grid-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 20px rgba(0,0,0,0.1);
+        border-color: #cbd5e1;
+    }
 
-    /* Tablet nézet (601px - 900px): 2 oszlop */
     @media (min-width: 601px) and (max-width: 900px) {
         .grid-cards { grid-template-columns: repeat(2, 1fr); }
     }
-
-    /* Asztali nézet (≥901px): 3 oszlop, és a .wide dupla helyet foglal */
     @media (min-width: 901px) {
         .grid-cards { grid-template-columns: repeat(3, 1fr); }
-        .grid-cards .wide { grid-column: span 2; background-color: #93c5fd; }
+        .grid-cards .wide { 
+            grid-column: span 2; 
+            background: linear-gradient(135deg, #eff6ff, #dbeafe); 
+            border-color: #bfdbfe;
+            color: #1e3a8a;
+        }
     }
 
-    /* Extra: Teendőlista dizájn */
-    .done { text-decoration: line-through; color: gray; }
-    .del { background: red; color: white; border: none; padding: 3px 8px; margin-left: 10px; border-radius: 4px; cursor: pointer; }
-    .todo-span { cursor: pointer; font-weight: bold; }
+    /* ----------------------------------------- */
+    /* TEENDŐLISTA EXTRÁK                        */
+    /* ----------------------------------------- */
+    #todo-list { list-style: none; padding: 0; }
+    #todo-list li {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: #f8fafc;
+        margin-bottom: 10px;
+        padding: 12px 15px;
+        border-radius: 8px;
+        border: 1px solid #e2e8f0;
+        color: #333;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        transition: all 0.2s ease;
+    }
+    #todo-list li:hover { background: #f1f5f9; }
+    .done { text-decoration: line-through; color: #94a3b8; font-style: italic; }
+    .del { 
+        background: #ef4444; 
+        padding: 6px 12px; 
+        border-radius: 6px; 
+        font-size: 0.85rem;
+    }
+    .del:hover { background: #dc2626; }
+    .todo-span { cursor: pointer; font-weight: 500; flex: 1; }
+
+    /* Szekció címek */
+    h2 { margin-top: 40px; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px; }
 </style>
 
 <h1>Ismétlés - 30 perc</h1>
@@ -74,28 +160,28 @@ nav_exclude: true
 
 <!-- 2. SZEKCIÓ -->
 <h2>2) DOM – mini teendőlista</h2>
-<form id="todo-form">
-    <input type="text" id="todo-input" placeholder="Mit kell csinálni?" required>
-    <button type="submit">Hozzáad</button>
+<form id="todo-form" style="display: flex; gap: 10px; align-items: flex-start;">
+    <input type="text" id="todo-input" placeholder="Mit kell csinálni?" required style="margin: 0;">
+    <button type="submit" style="margin: 0;">Hozzáad</button>
 </form>
-<ul id="todo-list" style="margin-top: 15px;"></ul>
+<ul id="todo-list" style="margin-top: 20px;"></ul>
 
 <!-- 3. SZEKCIÓ -->
 <h2>3) HTML + űrlapok (GET / POST)</h2>
-<div style="display: flex; gap: 40px;">
-    <div>
-        <h3>GET űrlap</h3>
-        <form method="GET">
-            <input type="text" name="q" placeholder="Keresendő szó...">
-            <button type="submit">Keres</button>
+<div style="display: flex; gap: 40px; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 250px; background: #f8fafc; padding: 20px; border-radius: 8px; border: 1px solid #e2e8f0;">
+        <h3 style="margin-top: 0; color: #333;">GET űrlap</h3>
+        <form method="GET" style="display: flex; gap: 10px;">
+            <input type="text" name="q" placeholder="Keresendő szó..." style="margin: 0;">
+            <button type="submit" style="margin: 0;">Keres</button>
         </form>
-        <p>A keresett szó a linkből: <strong id="q-result" style="color: royalblue;">—</strong></p>
+        <p style="margin-bottom: 0; color: #333; margin-top: 15px;">A keresett szó a linkből: <strong id="q-result" style="color: #3b82f6;">—</strong></p>
     </div>
-    <div>
-        <h3>POST űrlap</h3>
-        <form method="POST">
-            <input type="text" name="payloadData" placeholder="Titkos adat...">
-            <button type="submit">Küldés</button>
+    <div style="flex: 1; min-width: 250px; background: #f8fafc; padding: 20px; border-radius: 8px; border: 1px solid #e2e8f0;">
+        <h3 style="margin-top: 0; color: #333;">POST űrlap</h3>
+        <form method="POST" style="display: flex; gap: 10px;">
+            <input type="text" name="payloadData" placeholder="Titkos adat..." style="margin: 0;">
+            <button type="submit" style="margin: 0;">Küldés</button>
         </form>
     </div>
 </div>
@@ -109,11 +195,11 @@ nav_exclude: true
 <!-- 5. SZEKCIÓ -->
 <h2>5) Box-modell + Flexbox fejléc</h2>
 <header class="flex-header">
-    <strong>Demo Site</strong>
+    <strong style="font-size: 1.2rem;">Demo Site</strong>
     <nav>
-        <a href="#" style="color: white;">DevTools</a>
-        <a href="#" style="color: white;">DOM</a>
-        <a href="#" style="color: white;">Grid</a>
+        <a href="#">DevTools</a>
+        <a href="#">DOM</a>
+        <a href="#">Grid</a>
     </nav>
 </header>
 
@@ -142,11 +228,9 @@ nav_exclude: true
     const todoInput = document.getElementById('todo-input');
     const todoList = document.getElementById('todo-list');
 
-    // Hozzáadás esemény (Űrlap beküldés)
     todoForm.addEventListener('submit', function(e) {
-        e.preventDefault(); // Megakadályozza, hogy az oldal újratöltsön!
+        e.preventDefault(); 
 
-        // HTML elemek legyártása
         const li = document.createElement('li');
         
         const span = document.createElement('span');
@@ -157,22 +241,17 @@ nav_exclude: true
         delBtn.className = 'del';
         delBtn.innerText = 'Törlés';
 
-        // Elemek összerakása: <li>-be beletesszük a <span>-t és a gombot
         li.appendChild(span);
         li.appendChild(delBtn);
         todoList.appendChild(li);
 
-        // Input mező kiürítése
         todoInput.value = '';
     });
 
-    // Delegált eseménykezelő a listára (Figyeli a kattintásokat a teljes <ul>-en belül)
     todoList.addEventListener('click', function(e) {
-        // Ha a szövegre (SPAN) kattintottak -> Áthúzzuk
         if (e.target.tagName === 'SPAN') {
             e.target.classList.toggle('done');
         }
-        // Ha a Törlés gombra kattintottak -> Töröljük a teljes sort (li)
         if (e.target.classList.contains('del')) {
             e.target.parentElement.remove();
         }
@@ -181,7 +260,6 @@ nav_exclude: true
     // -----------------------------------------
     // 3) ŰRLAPOK (GET) QUERYS TRING OLVASÁSA
     // -----------------------------------------
-    // Megnézzük a weboldal linkjét (pl: ?q=alma), és kiszedjük belőle a "q" értékét
     const urlParams = new URLSearchParams(window.location.search);
     const q = urlParams.get('q');
     if (q) {
