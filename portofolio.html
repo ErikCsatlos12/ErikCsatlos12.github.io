@@ -184,7 +184,7 @@
 
     /* Készségek Chips */
     .chip-group {
-      margin-bottom: 16px;
+      margin-bottom: 20px;
     }
     .chip-group:last-child {
       margin-bottom: 0;
@@ -192,7 +192,7 @@
     .chip-group-title {
       font-size: 14px;
       color: var(--text-main);
-      margin-bottom: 8px;
+      margin-bottom: 10px;
       font-weight: 500;
     }
     .chip {
@@ -210,6 +210,44 @@
       background: rgba(255,255,255,.05);
       border-color: var(--text-muted);
       color: var(--text-main);
+    }
+
+    /* Credly Badge Kártya */
+    .badge-card {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(255,255,255,.02);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 10px 16px 10px 10px;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+    .badge-card:hover {
+      background: rgba(255,255,255,.06);
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    .badge-card img {
+      width: 50px;
+      height: 50px;
+      border-radius: 4px;
+    }
+    .badge-card-text {
+      display: flex;
+      flex-direction: column;
+    }
+    .badge-card-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+    .badge-card-subtitle {
+      font-size: 12px;
+      color: var(--accent);
+      margin-top: 2px;
     }
 
     /* Reszponzivitás */
@@ -388,8 +426,8 @@
           </td>
           <td class="content-col">
             <h3>
-              <span lang="hu">Önkéntes Segítő</span>
-              <span lang="en">Volunteer Helper</span>
+              <span lang="hu">Önkéntes</span>
+              <span lang="en">Volunteer</span>
             </h3>
             <div class="org">Yuppi Tábor (Yuppi Camp)</div>
             <ul lang="hu">
@@ -419,7 +457,14 @@
           <span lang="hu">Szakmai Tanúsítványok</span>
           <span lang="en">Professional Certifications</span>
         </div>
-        <span class="chip" style="color: var(--accent); border-color: var(--accent);">Shopify Development Fundamentals (Credly Badge)</span>
+        <!-- Vizuális Credly Jelvény -->
+        <a href="https://www.credly.com/earner/earned/share/724f7b61-3d36-419e-8187-4afe55288e49" target="_blank" rel="noopener" class="badge-card">
+          <img src="shopify-badge.png" alt="Shopify Development Fundamentals Badge">
+          <div class="badge-card-text">
+            <span class="badge-card-title">Shopify Development Fundamentals</span>
+            <span class="badge-card-subtitle">Credly Verified</span>
+          </div>
+        </a>
       </div>
 
       <div class="chip-group">
@@ -454,22 +499,17 @@
   <!-- JavaScript a nyelvváltó logikához -->
   <script>
     function setLang(lang) {
-      // Beállítjuk a body class-t, ami aktiválja a megfelelő CSS szabályt
       document.body.className = 'lang-' + lang;
       
-      // Frissítjük a gombok kinézetét
       document.getElementById('btn-hu').classList.remove('active');
       document.getElementById('btn-en').classList.remove('active');
       document.getElementById('btn-' + lang).classList.add('active');
       
-      // Eltároljuk a választást a böngészőben
       localStorage.setItem('cv-lang', lang);
       
-      // Dinamikusan módosítjuk a HTML "lang" attribútumát is (SEO/hozzáférhetőség)
       document.documentElement.lang = lang;
     }
 
-    // Amikor betölt az oldal, megnézzük, volt-e már korábban választott nyelv
     document.addEventListener('DOMContentLoaded', () => {
       const savedLang = localStorage.getItem('cv-lang') || 'hu';
       setLang(savedLang);
