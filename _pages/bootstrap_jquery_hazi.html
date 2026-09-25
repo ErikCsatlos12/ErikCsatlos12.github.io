@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap & jQuery Házi</title>
+    <!-- Bootstrap 5 CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #f8f9fa; }
+        /* 6.b feladathoz tartozó osztály */
+        .highlight { 
+            background-color: #ffe066; 
+            padding: 10px; 
+            border-radius: 6px; 
+            transition: all 0.3s ease; 
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1️⃣ Bootstrap Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4 shadow">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">Erik Csatlos</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="menu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="#">Főoldal</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#kapcsolat">Kapcsolat</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container pb-5">
+        
+        <!-- 3️⃣ Alert + Gomb -->
+        <div class="mb-4">
+            <button id="showAlert" class="btn btn-warning shadow-sm">Kattints egy jQuery Alerthez!</button>
+            <div id="alertBox" class="mt-3"></div>
+        </div>
+
+        <!-- 2️⃣ Bootstrap Card Grid -->
+        <h3 class="mb-3">Szakmai Projektek</h3>
+        <div class="row g-4 mb-5">
+            <!-- Kártya 1: Ehhez kapcsolódik a Modal -->
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm border-0">
+                    <img src="https://picsum.photos/seed/diabpet/300/200" class="card-img-top" alt="Diabpet">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title text-primary">Diabpet App</h5>
+                        <p class="card-text">Gamifikált orvosi applikáció Flutter alapokon.</p>
+                        <!-- Gomb, ami megnyitja az infoModal-t -->
+                        <button data-bs-toggle="modal" data-bs-target="#infoModal" class="btn btn-primary mt-auto shadow-sm">Részletek (Modal)</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Kártya 2 -->
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm border-0">
+                    <img src="https://picsum.photos/seed/shopify/300/200" class="card-img-top" alt="Shopify">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title text-success">Shopify Fejlesztés</h5>
+                        <p class="card-text">Egyedi webshop funkciók és Liquid sablonok készítése e-kereskedelmi motorokhoz.</p>
+                        <a href="#" class="btn btn-outline-success mt-auto">Megnyitás</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kártya 3 -->
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm border-0">
+                    <img src="https://picsum.photos/seed/erdely/300/200" class="card-img-top" alt="Erdély">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title text-info">Erdély Útikalauz</h5>
+                        <p class="card-text">Androidos utazási applikáció interaktív térképekkel, Java és XML használatával.</p>
+                        <a href="#" class="btn btn-outline-info mt-auto text-dark">Megnyitás</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4️⃣ Modal -->
+        <div class="modal fade" id="infoModal" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content border-0 shadow">
+                    <div class="modal-header bg-primary text-white">
+                        <h5 class="modal-title">Projekt Részletek</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="fs-5">Eredeti HTML szöveg, amit a jQuery át fog írni megnyitáskor...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr class="my-5">
+
+        <div class="row">
+            <!-- 5️⃣ Bootstrap Form -->
+            <div class="col-md-6 mb-4" id="kapcsolat">
+                <h3 class="mb-3">Kapcsolat</h3>
+                <form id="contactForm" class="p-4 border-0 bg-white rounded shadow-sm">
+                    <div class="mb-3">
+                        <input id="name" type="text" class="form-control" placeholder="A te neved" required>
+                    </div>
+                    <div class="mb-3">
+                        <input id="email" type="email" class="form-control" placeholder="Email címed" required>
+                    </div>
+                    <div class="mb-3">
+                        <textarea id="msg" class="form-control" rows="3" placeholder="Üzeneted..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-success w-100 shadow-sm">Küldés</button>
+                </form>
+                <!-- Ide kerül a sikeres üzenet jQuery-vel -->
+                <div id="thanks" class="mt-3 fs-5 text-success fw-bold" style="display: none;"></div>
+            </div>
+
+            <!-- 6️⃣ jQuery mini feladatok -->
+            <div class="col-md-6 mb-4">
+                <h3 class="mb-3">jQuery Interakciók</h3>
+                <div class="p-4 border-0 bg-white rounded shadow-sm">
+                    
+                    <!-- a) Szöveg módosítás -->
+                    <div class="mb-4">
+                        <p id="para" class="mb-2 text-muted">Eredeti bekezdés szöveg, vár a cserére.</p>
+                        <button id="btnText" class="btn btn-sm btn-outline-secondary">a) Szöveg csere</button>
+                    </div>
+                    
+                    <!-- b) Highlight -->
+                    <div class="mb-4">
+                        <div id="box" class="mb-2 border p-2 rounded">Jelöld ki ezt a dobozt egy kattintással!</div>
+                        <button id="btnToggle" class="btn btn-sm btn-outline-secondary">b) Osztály (Highlight) váltás</button>
+                    </div>
+                    
+                    <!-- c) AJAX -->
+                    <div>
+                        <button id="btnAjax" class="btn btn-sm btn-info text-white mb-2 shadow-sm">c) AJAX API Lekérés indítása</button>
+                        <pre id="result" class="bg-light p-3 border rounded" style="font-size: 13px; max-height: 150px; overflow-y: auto;">Az eredmény ide érkezik...</pre>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- jQuery és Bootstrap Bundle JS csatolása a body legvégén -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // A jQuery kódok csak akkor futnak le, ha a HTML oldal már teljesen betöltött
+        $(document).ready(function() {
+            
+            // 3️⃣ Alert generálása
+            $('#showAlert').on('click', function() {
+                const alertHtml = `
+                    <div class="alert alert-success alert-dismissible fade show shadow-sm" role="alert">
+                        <strong>Szuper!</strong> Sikeresen legeneráltál egy Bootstrap értesítést jQuery-vel.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                `;
+                $('#alertBox').html(alertHtml); // Kicseréli az alertBox tartalmát
+            });
+
+            // 4️⃣ Modal szövegének dinamikus cseréje megnyitáskor
+            $('#infoModal').on('show.bs.modal', function(){
+                $('.modal-body p').text('A Diabpet egy Flutter-ben írt gamifikált app. Ezt a szöveget a jQuery cserélte ki a modal megnyitásának pillanatában!');
+            });
+
+            // 5️⃣ Form beküldés figyelése és feldolgozása
+            $('#contactForm').on('submit', function(e){
+                e.preventDefault(); // Megakadályozza az oldal újratöltését
+                const nev = $('#name').val();
+                
+                if(nev.trim() !== "") {
+                    // Halványításos animációval jelenik meg az üzenet
+                    $('#thanks').hide().text('Köszönjük a megkeresést, ' + nev + '!').fadeIn();
+                    // Űrlap kiürítése sikeres küldés után
+                    $('#contactForm')[0].reset(); 
+                }
+            });
+
+            // 6️⃣ a) Szöveg csere
+            $('#btnText').on('click', function(){ 
+                $('#para').text('A szöveg sikeresen megváltozott a jQuery .text() függvényének segítségével.').removeClass('text-muted').addClass('text-primary fw-bold'); 
+            });
+
+            // 6️⃣ b) Highlight osztály toggle (hozzáad/elvesz)
+            $('#btnToggle').on('click', function(){ 
+                $('#box').toggleClass('highlight'); 
+            });
+
+            // 6️⃣ c) AJAX lekérés egy publikus API-ról
+            $('#btnAjax').on('click', function(){
+                $('#result').text('Adatok letöltése folyamatban...'); // Töltőképernyő szöveg
+                
+                $.get('https://httpbin.org/get', function(data){
+                    // A kapott JSON adatot szép, olvasható formába formázzuk és kiírjuk
+                    $('#result').text(JSON.stringify(data, null, 2));
+                }).fail(function() {
+                    $('#result').text('Hiba történt a letöltés során.');
+                });
+            });
+
+        });
+    </script>
+</body>
+</html>
