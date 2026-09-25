@@ -3,233 +3,352 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Erik Csatlos – Portfólió / CV</title>
-  <meta name="description" content="Erik Csatlos - Informatikus hallgató és szoftverfejlesztő (Flutter, Python, webfejlesztés) szakmai önéletrajza és portfóliója.">
+  <title>Erik Csatlos – Szakmai Önéletrajz</title>
+  <meta name="description" content="Erik Csatlos - Informatika szakos hallgató és Shopify szoftverfejlesztő szakmai önéletrajza.">
   <meta name="color-scheme" content="dark">
   <style>
+    :root {
+      --bg-main: #0a0a0a;
+      --bg-card: #121212;
+      --border-color: #27272a;
+      --text-main: #e4e4e7;
+      --text-muted: #a1a1aa;
+      --accent: #3b82f6;
+    }
+
     body {
-      background: #0b0f14;
-      color: #e6e9ef;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      background: var(--bg-main);
+      color: var(--text-main);
+      font-family: 'Segoe UI', system-ui, -apple-system, Roboto, Arial, sans-serif;
       margin: 0;
-      padding: 24px;
-      line-height: 1.6;
+      padding: 40px 20px;
+      line-height: 1.7;
     }
     
-    #app {
-      max-width: 800px;
+    #cv-container {
+      max-width: 850px;
       margin: 0 auto;
       display: flex;
       flex-direction: column;
-      gap: 24px;
+      gap: 32px;
     }
 
-    /* Profilkártya */
-    .profile-card {
+    /* Profilkártya - Elegáns Fejléc */
+    .header-card {
       display: flex;
-      gap: 18px;
+      gap: 24px;
       align-items: center;
-      background: #11161d;
-      border: 1px solid #1f2937;
-      border-radius: 16px;
-      padding: 24px;
-      box-shadow: 0 10px 30px rgba(0,0,0,.35);
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 32px;
+      box-shadow: 0 4px 20px rgba(0,0,0,.4);
     }
-    .profile-card .avatar {
-      width: 96px;
-      height: 96px;
+    .header-card .avatar {
+      width: 120px;
+      height: 120px;
       border-radius: 50%;
       object-fit: cover;
-      border: 2px solid #1f2937;
+      border: 2px solid var(--border-color);
     }
-    .profile-card .meta {
+    .header-card .meta {
       flex: 1;
     }
-    .profile-card .name {
+    .header-card h1 {
       margin: 0;
-      font-size: 28px;
+      font-size: 32px;
+      font-weight: 600;
+      letter-spacing: -0.5px;
     }
-    .profile-card .role {
-      margin: 4px 0 12px;
-      color: #9aa4b2;
+    .header-card .role {
+      margin: 4px 0 16px;
+      color: var(--accent);
       font-weight: 500;
+      font-size: 16px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
-    .profile-card .links a {
-      color: #e6e9ef;
+    .header-card .links a {
+      color: var(--text-muted);
       text-decoration: none;
-      padding-right: 8px;
+      padding-right: 12px;
+      font-size: 14px;
+      transition: color 0.2s;
     }
-    .profile-card .links a:hover {
-      text-decoration: underline;
-      color: #60a5fa;
+    .header-card .links a:hover {
+      color: var(--text-main);
     }
 
-    /* CV Szekció kártyák */
+    /* CV Szekciók - Letisztult dizájn */
     .cv-section {
-      background: #11161d;
-      border: 1px solid #1f2937;
-      border-radius: 16px;
-      padding: 24px;
-      box-shadow: 0 5px 15px rgba(0,0,0,.2);
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 32px;
     }
     .cv-section h2 {
       margin-top: 0;
-      border-bottom: 1px solid #1f2937;
+      border-bottom: 1px solid var(--border-color);
       padding-bottom: 12px;
-      color: #f8fafc;
-      font-size: 20px;
+      color: #ffffff;
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 24px;
     }
-    .job {
-      margin-bottom: 20px;
+    .cv-section p {
+      margin-top: 0;
+      color: var(--text-muted);
     }
-    .job:last-child {
-      margin-bottom: 0;
+
+    /* Táblázatos elrendezés a tapasztalatokhoz és tanulmányokhoz */
+    .cv-table {
+      width: 100%;
+      border-collapse: collapse;
     }
-    .job h3 {
+    .cv-table td {
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border-color);
+      vertical-align: top;
+    }
+    .cv-table tr:last-child td {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+    .cv-table tr:first-child td {
+      padding-top: 0;
+    }
+    
+    .timeline-col {
+      width: 25%;
+      color: var(--text-muted);
+      font-weight: 500;
+      font-size: 14px;
+      padding-right: 20px;
+    }
+    .content-col h3 {
       margin: 0 0 4px 0;
+      color: #ffffff;
       font-size: 18px;
     }
-    .job-meta {
-      color: #9aa4b2;
+    .content-col .org {
+      color: var(--accent);
       font-size: 14px;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
+      font-weight: 500;
     }
-    .job ul {
+    .content-col ul {
       margin: 0;
-      padding-left: 20px;
+      padding-left: 18px;
+      color: var(--text-muted);
+      font-size: 15px;
     }
-    .job li {
+    .content-col li {
       margin-bottom: 6px;
     }
 
     /* Készségek Chips */
+    .chip-group {
+      margin-bottom: 16px;
+    }
+    .chip-group:last-child {
+      margin-bottom: 0;
+    }
+    .chip-group-title {
+      font-size: 14px;
+      color: var(--text-main);
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
     .chip {
       display: inline-block;
-      margin: 4px 6px 4px 0;
-      padding: 6px 12px;
-      border: 1px solid #1f2937;
-      border-radius: 999px;
-      background: rgba(255,255,255,.03);
+      margin: 0 6px 8px 0;
+      padding: 6px 14px;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      background: rgba(255,255,255,.02);
       font-size: 13px;
-      color: #cbd5e1;
-      transition: background 0.2s;
+      color: var(--text-muted);
+      transition: all 0.2s;
     }
     .chip:hover {
-      background: rgba(255,255,255,.08);
+      background: rgba(255,255,255,.05);
+      border-color: var(--text-muted);
+      color: var(--text-main);
     }
 
-    /* Reszponzív */
-    @media (max-width: 600px){
-      .profile-card {
+    /* Reszponzivitás */
+    @media (max-width: 650px) {
+      .header-card {
         flex-direction: column;
-        align-items: flex-start;
         text-align: center;
+        padding: 24px;
       }
-      .profile-card .avatar {
-        width: 84px;
-        height: 84px;
-        margin: 0 auto;
-      }
-      .profile-card .meta {
-        width: 100%;
-      }
-      .profile-card .links {
+      .header-card .links {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        gap: 10px;
+        gap: 12px;
       }
-      .profile-card .links a {
+      .header-card .links a {
         padding-right: 0;
+      }
+      
+      /* Táblázat oszlopainak egymás alá törése mobilon */
+      .cv-table, .cv-table tbody, .cv-table tr, .cv-table td {
+        display: block;
+        width: 100%;
+      }
+      .cv-table td {
+        padding: 0;
+        border: none;
+      }
+      .cv-table tr {
+        border-bottom: 1px solid var(--border-color);
+        padding: 20px 0;
+      }
+      .cv-table tr:first-child {
+        padding-top: 0;
+      }
+      .cv-table tr:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+      .timeline-col {
+        padding-right: 0;
+        margin-bottom: 8px;
+        color: var(--accent);
       }
     }
   </style>
 </head>
 <body>
-  <main id="app">
+  <main id="cv-container">
     
-    <!-- Profilkártya -->
-    <section class="profile-card">
-      <img class="avatar" src="profilkep.jpg" alt="Profilkép" />
+    <!-- Fejléc -->
+    <header class="header-card">
+      <img class="avatar" src="profilkep.jpg" alt="Erik Csatlos profilkép" />
       <div class="meta">
-        <h1 class="name">Erik Csatlos</h1>
-        <p class="role">Shopify Developer · Informatikus Hallgató</p>
+        <h1>Erik Csatlos</h1>
+        <div class="role">Shopify Developer & Informatikus Hallgató</div>
         <div class="links">
-          <a href="mailto:csatlos.erik.24@stud.umfst.ro" target="_blank" rel="noopener">Email</a> ·
-          <a href="https://linkedin.com/in/erikcsatlos" target="_blank" rel="noopener">LinkedIn</a> ·
+          <a href="mailto:csatlos.erik.24@stud.umfst.ro" target="_blank" rel="noopener">csatlos.erik.24@stud.umfst.ro</a> |
+          <a href="https://linkedin.com/in/erikcsatlos" target="_blank" rel="noopener">LinkedIn</a> |
           <a href="https://github.com/ErikCsatlos12" target="_blank" rel="noopener">GitHub</a>
         </div>
       </div>
-    </section>
+    </header>
 
-    <!-- CV Szekciók -->
-    
+    <!-- Bemutatkozás -->
     <section class="cv-section">
       <h2>Bemutatkozás</h2>
-      <p>Informatikus hallgató vagyok a marosvásárhelyi UMFST egyetemen. Szenvedélyem a mobil- és webfejlesztés, különös tekintettel az innovatív, interaktív megoldásokra. Egyaránt érdekel a modern keretrendszerek (Flutter, Shopify Liquid) alkalmazása és a háttérrendszerek (Python, Java) biztosítása.</p>
+      <p>Harmadéves informatika szakos hallgató vagyok a marosvásárhelyi UMFST-n. Az egyetemi elmélet mellett mindig is a gyakorlati megvalósítás vonzott, ezért is csatlakoztam a Dalbe Digital Agency csapatához, ahol Shopify fejlesztőként egyedi webshopokat és e-kereskedelmi funkciókat építek.</p>
+      <p style="margin-bottom: 0;">Nagyon szeretem, ha a munkámnak kézzelfogható, vizuális eredménye van. Legyen szó egy komplex Liquid sablon megírásáról, vagy épp egy saját gamifikált mobilalkalmazás fejlesztéséről Flutterben, a lényeg, hogy interaktív és jól használható felületeket alkossak. A látványos front-end megoldások mellett a háttérrendszerek (Python, Java) logikáját is szeretem összerakni, mert így látom át igazán egy projekt teljes működését.</p>
     </section>
 
+    <!-- Szakmai Tapasztalat -->
     <section class="cv-section">
-      <h2>Tapasztalat</h2>
+      <h2>Szakmai Tapasztalat</h2>
+      <table class="cv-table">
+        <tr>
+          <td class="timeline-col">2026. Március – Jelenleg</td>
+          <td class="content-col">
+            <h3>Shopify Developer</h3>
+            <div class="org">Dalbe Digital Agency</div>
+            <ul>
+              <li>E-kereskedelmi (Shopify) áruházak egyedi fejlesztése és testreszabása ügyfelek számára.</li>
+              <li>Liquid sablonok írása, reszponzív HTML/CSS és JavaScript kódolás.</li>
+              <li>Munkahelyi dokumentumgeneráló eszközök építése és automatizálása Python (Flask) alapokon.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="timeline-col">2026. Január – Jelenleg</td>
+          <td class="content-col">
+            <h3>Szabadúszó Szoftvertesztelő (QA)</h3>
+            <div class="org">Test IO</div>
+            <ul>
+              <li>Webes és mobil alkalmazások minőségbiztosítása, funkcionális és UI/UX tesztelése.</li>
+              <li>Részletes hibajelentések és reprodukciós képernyővideók készítése a fejlesztői csapatok számára.</li>
+            </ul>
+          </td>
+        </tr>
+      </table>
+    </section>
+
+    <!-- Tanulmányok -->
+    <section class="cv-section">
+      <h2>Tanulmányok</h2>
+      <table class="cv-table">
+        <tr>
+          <td class="timeline-col">2023 – Jelenleg<br><small>(3. évfolyam)</small></td>
+          <td class="content-col">
+            <h3>Informatika (BSc)</h3>
+            <div class="org">UMFST (George Emil Palade Egyetem), Marosvásárhely</div>
+            <ul>
+              <li>Főbb fókuszterületek: Adatszerkezetek, Gráfelmélet, Hálózatok (Cisco Packet Tracer), Operációs Rendszerek, Párhuzamos Programozás (C, POSIX).</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="timeline-col">Középiskola</td>
+          <td class="content-col">
+            <h3>Tehnician în hotelărie</h3>
+            <div class="org">Liceul Tehnologic Electromureș</div>
+            <ul>
+              <li>Szakmai alapozó képzés a vendéglátás és turizmus területén.</li>
+            </ul>
+          </td>
+        </tr>
+      </table>
+    </section>
+
+    <!-- Önkéntesség & Soft Skills -->
+    <section class="cv-section">
+      <h2>Önkéntesség & Közösség</h2>
+      <table class="cv-table">
+        <tr>
+          <td class="timeline-col">2 alkalommal</td>
+          <td class="content-col">
+            <h3>Önkéntes Segítő</h3>
+            <div class="org">Yuppi Tábor (Yuppi Camp)</div>
+            <ul>
+              <li>Aktív részvétel a tábori programok lebonyolításában, krónikus beteg gyerekek támogatása.</li>
+              <li>Szorosan együttműködő, dinamikus csapatmunka és magas szintű empátia gyakorlása.</li>
+              <li>Problémamegoldás valós idejű, váratlan helyzetekben.</li>
+            </ul>
+          </td>
+        </tr>
+      </table>
+    </section>
+
+    <!-- Készségek & Tanúsítványok -->
+    <section class="cv-section">
+      <h2>Készségek & Tanúsítványok</h2>
       
-      <div class="job">
-        <h3>Shopify Developer</h3>
-        <div class="job-meta">Dalbe Digital Agency · 2026. Március – Jelenleg (6 hónapja)</div>
-        <ul>
-          <li>E-kereskedelmi (Shopify) áruházak egyedi fejlesztése és testreszabása.</li>
-          <li>Liquid sablonok írása, reszponzív HTML/CSS és JavaScript kódolás.</li>
-          <li>Munkahelyi dokumentumgeneráló eszközök építése Python (Flask) alapokon.</li>
-        </ul>
+      <div class="chip-group">
+        <div class="chip-group-title">Szakmai Tanúsítványok</div>
+        <span class="chip" style="color: var(--accent); border-color: var(--accent);">Shopify Development Fundamentals (Credly Badge)</span>
       </div>
 
-      <div class="job">
-        <h3>Szabadúszó Szoftvertesztelő (QA)</h3>
-        <div class="job-meta">Test IO · 2026. Január – Jelenleg</div>
-        <ul>
-          <li>Webes és mobil alkalmazások minőségbiztosítása, funkcionális és UI/UX tesztelése.</li>
-          <li>Részletes hibajelentések és reprodukciós képernyővideók készítése.</li>
-        </ul>
-      </div>
-      
-      <div class="job">
-        <h3>Turizmus Szervező</h3>
-        <div class="job-meta">Idegenforgalmi szektor · 1 év tapasztalat</div>
-        <ul>
-          <li>Kommunikációs készségek és ügyfélkapcsolat-kezelés napi szintű gyakorlása.</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="cv-section">
-      <h2>Oktatás & Minősítések</h2>
-      <div class="job">
-        <h3>Számítástechnika (BSc)</h3>
-        <div class="job-meta">UMFST (George Emil Palade Egyetem), Marosvásárhely · 2023 – Jelenleg (3. évfolyam)</div>
-        <ul>
-          <li>Főbb tárgyak: Adatszerkezetek, Gráfelmélet, Hálózatok (Cisco Packet Tracer), Operációs Rendszerek, Párhuzamos Programozás (C, POSIX).</li>
-        </ul>
-      </div>
-      <div class="job">
-        <h3>Szakmai Tanúsítványok</h3>
-        <ul>
-          <li><strong>Shopify</strong> Development Fundamentals (Credly Badge)</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="cv-section">
-      <h2>Készségek</h2>
-      <div class="chips-container">
-        <span class="chip">Flutter</span>
-        <span class="chip">Dart</span>
-        <span class="chip">Java</span>
-        <span class="chip">Android Studio</span>
-        <span class="chip">Python (Flask)</span>
+      <div class="chip-group">
+        <div class="chip-group-title">Fejlesztési Technológiák</div>
         <span class="chip">Shopify Liquid</span>
+        <span class="chip">Flutter / Dart</span>
+        <span class="chip">Python (Flask)</span>
+        <span class="chip">Java</span>
+        <span class="chip">C (Sockets / Threads)</span>
         <span class="chip">HTML5 / CSS3</span>
         <span class="chip">JavaScript</span>
-        <span class="chip">C (Sockets / Threads)</span>
+      </div>
+
+      <div class="chip-group">
+        <div class="chip-group-title">Eszközök & Személyes Készségek</div>
         <span class="chip">Git / GitHub</span>
+        <span class="chip">Android Studio</span>
+        <span class="chip">Cisco Packet Tracer</span>
+        <span class="chip">Csapatmunka</span>
+        <span class="chip">Precíziós tesztelés</span>
+        <span class="chip">Kiváló kommunikáció</span>
       </div>
     </section>
 
