@@ -1,0 +1,190 @@
+---
+layout: default
+permalink: /lab2/
+title: "Ismétlés"
+nav_exclude: true
+---
+
+<style>
+    /* ----------------------------------------- */
+    /* 4) CSS SZELEKTOROK TODO-k                 */
+    /* ----------------------------------------- */
+    .card-item { 
+        border: 1px solid #ddd; 
+        padding: 1rem; 
+        border-radius: .5rem; 
+        margin-bottom: 10px;
+    }
+    #k2 { outline: 2px solid royalblue; }
+    .card-item[data-level="advanced"] { background: #f3f7ff; }
+    .card-item:first-child::before { content: "★ "; color: royalblue; }
+
+    /* ----------------------------------------- */
+    /* 5) BOX-MODELL + FLEXBOX FEJLÉC TODO-k     */
+    /* ----------------------------------------- */
+    .flex-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: #333;
+        color: white;
+        padding: 15px; /* Növeld meg a paddinget a böngésző DevTools-ban! */
+        margin-bottom: 20px;
+    }
+    .flex-header nav { display: flex; gap: 15px; }
+    
+    /* Mobilos töréspont (≤700px) - oszlopba törik */
+    @media (max-width: 700px) {
+        .flex-header { flex-direction: column; gap: 10px; }
+    }
+
+    /* ----------------------------------------- */
+    /* 6) CSS GRID RESZPONZÍV TODO-k             */
+    /* ----------------------------------------- */
+    .grid-cards { 
+        display: grid; 
+        gap: 1rem; 
+        /* Alapértelmezett (mobil, ≤600px): 1 oszlop */
+        grid-template-columns: 1fr;
+    }
+    .grid-card { background: #e2e8f0; padding: 20px; border-radius: 8px; text-align: center; }
+
+    /* Tablet nézet (601px - 900px): 2 oszlop */
+    @media (min-width: 601px) and (max-width: 900px) {
+        .grid-cards { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* Asztali nézet (≥901px): 3 oszlop, és a .wide dupla helyet foglal */
+    @media (min-width: 901px) {
+        .grid-cards { grid-template-columns: repeat(3, 1fr); }
+        .grid-cards .wide { grid-column: span 2; background-color: #93c5fd; }
+    }
+
+    /* Extra: Teendőlista dizájn */
+    .done { text-decoration: line-through; color: gray; }
+    .del { background: red; color: white; border: none; padding: 3px 8px; margin-left: 10px; border-radius: 4px; cursor: pointer; }
+    .todo-span { cursor: pointer; font-weight: bold; }
+</style>
+
+<h1>Ismétlés - 30 perc</h1>
+
+<!-- 1. SZEKCIÓ -->
+<h2>1) Chrome DevTools</h2>
+<button id="dev-btn">Eredeti felirat</button>
+
+<!-- 2. SZEKCIÓ -->
+<h2>2) DOM – mini teendőlista</h2>
+<form id="todo-form">
+    <input type="text" id="todo-input" placeholder="Mit kell csinálni?" required>
+    <button type="submit">Hozzáad</button>
+</form>
+<ul id="todo-list" style="margin-top: 15px;"></ul>
+
+<!-- 3. SZEKCIÓ -->
+<h2>3) HTML + űrlapok (GET / POST)</h2>
+<div style="display: flex; gap: 40px;">
+    <div>
+        <h3>GET űrlap</h3>
+        <form method="GET">
+            <input type="text" name="q" placeholder="Keresendő szó...">
+            <button type="submit">Keres</button>
+        </form>
+        <p>A keresett szó a linkből: <strong id="q-result" style="color: royalblue;">—</strong></p>
+    </div>
+    <div>
+        <h3>POST űrlap</h3>
+        <form method="POST">
+            <input type="text" name="payloadData" placeholder="Titkos adat...">
+            <button type="submit">Küldés</button>
+        </form>
+    </div>
+</div>
+
+<!-- 4. SZEKCIÓ -->
+<h2>4) CSS/JS szelektorok</h2>
+<div class="card-item">Bevezető</div>
+<div class="card-item" id="k2">Közép</div>
+<div class="card-item" data-level="advanced">Haladó</div>
+
+<!-- 5. SZEKCIÓ -->
+<h2>5) Box-modell + Flexbox fejléc</h2>
+<header class="flex-header">
+    <strong>Demo Site</strong>
+    <nav>
+        <a href="#" style="color: white;">DevTools</a>
+        <a href="#" style="color: white;">DOM</a>
+        <a href="#" style="color: white;">Grid</a>
+    </nav>
+</header>
+
+<!-- 6. SZEKCIÓ -->
+<h2>6) CSS Grid – reszponzív</h2>
+<div class="grid-cards">
+    <div class="grid-card wide">Kiemelt (Span 2)</div>
+    <div class="grid-card">Kártya</div>
+    <div class="grid-card">Kártya</div>
+    <div class="grid-card">Kártya</div>
+    <div class="grid-card">Kártya</div>
+    <div class="grid-card">Kártya</div>
+</div>
+
+<script>
+    // -----------------------------------------
+    // 1) DEVTOOLS TODO-k JS RÉSZE
+    // -----------------------------------------
+    document.title = "Órai gyakorlás";
+    document.getElementById('dev-btn').innerText = "Felirat módosítva JS-ből!";
+
+    // -----------------------------------------
+    // 2) DOM - MINI TEENDŐLISTA TODO-k
+    // -----------------------------------------
+    const todoForm = document.getElementById('todo-form');
+    const todoInput = document.getElementById('todo-input');
+    const todoList = document.getElementById('todo-list');
+
+    // Hozzáadás esemény (Űrlap beküldés)
+    todoForm.addEventListener('submit', function(e) {
+        e.preventDefault(); // Megakadályozza, hogy az oldal újratöltsön!
+
+        // HTML elemek legyártása
+        const li = document.createElement('li');
+        
+        const span = document.createElement('span');
+        span.className = 'todo-span';
+        span.innerText = todoInput.value;
+        
+        const delBtn = document.createElement('button');
+        delBtn.className = 'del';
+        delBtn.innerText = 'Törlés';
+
+        // Elemek összerakása: <li>-be beletesszük a <span>-t és a gombot
+        li.appendChild(span);
+        li.appendChild(delBtn);
+        todoList.appendChild(li);
+
+        // Input mező kiürítése
+        todoInput.value = '';
+    });
+
+    // Delegált eseménykezelő a listára (Figyeli a kattintásokat a teljes <ul>-en belül)
+    todoList.addEventListener('click', function(e) {
+        // Ha a szövegre (SPAN) kattintottak -> Áthúzzuk
+        if (e.target.tagName === 'SPAN') {
+            e.target.classList.toggle('done');
+        }
+        // Ha a Törlés gombra kattintottak -> Töröljük a teljes sort (li)
+        if (e.target.classList.contains('del')) {
+            e.target.parentElement.remove();
+        }
+    });
+
+    // -----------------------------------------
+    // 3) ŰRLAPOK (GET) QUERYS TRING OLVASÁSA
+    // -----------------------------------------
+    // Megnézzük a weboldal linkjét (pl: ?q=alma), és kiszedjük belőle a "q" értékét
+    const urlParams = new URLSearchParams(window.location.search);
+    const q = urlParams.get('q');
+    if (q) {
+        document.getElementById('q-result').innerText = q;
+    }
+</script>
