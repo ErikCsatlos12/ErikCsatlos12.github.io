@@ -14,7 +14,7 @@
   <meta name="color-scheme" content="dark">
   <meta name="robots" content="index, follow">
 
-  <!-- Google Analytics (GA4) Tracker - SAJÁT KÓDDAL BEKÖTVE -->
+  <!-- Google Analytics (GA4) Tracker - Saját kód bekötve -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-JP7GH7J68B"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -63,7 +63,6 @@
       animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
       opacity: 0;
     }
-    /* Késleltetés a szekciók beúszásához */
     .delay-1 { animation-delay: 0.1s; }
     .delay-2 { animation-delay: 0.2s; }
     .delay-3 { animation-delay: 0.3s; }
@@ -200,6 +199,13 @@
     }
     .btn-submit:hover { background: var(--accent-hover); transform: translateY(-2px); }
 
+    /* ReCAPTCHA badge diszkrét elhelyezése, hogy ne takarja ki a gombot */
+    .grecaptcha-badge {
+      bottom: 20px !important;
+      right: 20px !important;
+      z-index: 1000;
+    }
+
     @media (max-width: 650px) {
       .header-card { flex-direction: column; text-align: center; padding: 24px; }
       .header-card .links { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
@@ -324,7 +330,6 @@
       <p lang="en">Snapshots of my work and developments:</p>
       
       <div class="gallery-grid">
-        <!-- Ide tedd majd be a saját képeidet a mappádból! -->
         <img src="profilkep.jpg" alt="Projekt 1" class="gallery-item" loading="lazy">
         <img src="shopify-badge.png" alt="Projekt 2" class="gallery-item" loading="lazy">
       </div>
@@ -405,7 +410,6 @@
 
   <!-- JavaScript Logika -->
   <script>
-    // Nyelvváltó
     function setLang(lang) {
       document.body.className = 'lang-' + lang;
       document.getElementById('btn-hu').classList.remove('active');
@@ -420,7 +424,6 @@
       setLang(savedLang);
     });
 
-    // FormSubmit beküldése, amint lefutott az invisible reCAPTCHA
     function onSubmitContactForm(token) {
       document.getElementById("contact-form").submit();
     }
