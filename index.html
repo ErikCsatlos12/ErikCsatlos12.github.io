@@ -14,7 +14,7 @@
   <meta name="color-scheme" content="dark">
   <meta name="robots" content="index, follow">
 
-  <!-- Google Analytics (GA4) Tracker - Saját kód bekötve -->
+  <!-- Google Analytics (GA4) Tracker -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-JP7GH7J68B"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -127,6 +127,32 @@
     .content-col ul { margin: 0; padding-left: 18px; color: var(--text-muted); font-size: 15px; }
     .content-col li { margin-bottom: 6px; }
 
+    /* Kiemelt Projekt Kártya (Neon Bar) */
+    .project-showcase {
+      background: linear-gradient(135deg, rgba(0, 243, 255, 0.05), rgba(255, 0, 229, 0.05));
+      border: 1px solid rgba(0, 243, 255, 0.3);
+      border-radius: 12px;
+      padding: 24px;
+      margin-top: 24px;
+      transition: all 0.3s;
+    }
+    .project-showcase:hover {
+      border-color: #00F3FF;
+      box-shadow: 0 0 20px rgba(0, 243, 255, 0.2);
+    }
+    .project-btn {
+      display: inline-block;
+      margin-top: 15px;
+      background: #00F3FF;
+      color: #09090E;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .project-btn:hover { background: #00c4d0; }
+
     /* Chips & Badges */
     .chip-group { margin-bottom: 24px; }
     .chip-group:last-child { margin-bottom: 0; }
@@ -137,14 +163,6 @@
       background: rgba(255,255,255,.02); font-size: 13px; color: var(--text-muted); transition: all 0.2s;
     }
     .chip:hover { background: rgba(255,255,255,.05); border-color: var(--text-muted); color: var(--text-main); transform: scale(1.05); }
-
-    .lang-chip {
-      display: inline-flex; flex-direction: column; margin: 0 10px 10px 0; padding: 10px 16px;
-      border: 1px solid var(--border-color); border-radius: 8px; background: rgba(255,255,255,.02); transition: all 0.2s;
-    }
-    .lang-chip:hover { background: rgba(255,255,255,.05); border-color: var(--accent); transform: translateY(-3px); }
-    .lang-chip .lang-name { font-weight: 600; color: var(--text-main); font-size: 14px; margin-bottom: 2px; }
-    .lang-chip .lang-level { font-size: 12px; color: var(--accent); }
 
     .badge-card {
       display: inline-flex; align-items: center; gap: 12px; background: rgba(255,255,255,.02);
@@ -199,7 +217,6 @@
     }
     .btn-submit:hover { background: var(--accent-hover); transform: translateY(-2px); }
 
-    /* ReCAPTCHA badge diszkrét elhelyezése, hogy ne takarja ki a gombot */
     .grecaptcha-badge {
       bottom: 20px !important;
       right: 20px !important;
@@ -254,15 +271,13 @@
       </h2>
       <p lang="hu">Harmadéves informatika szakos hallgató vagyok a marosvásárhelyi UMFST-n. Az egyetemi elmélet mellett mindig is a gyakorlati megvalósítás vonzott, ezért is csatlakoztam a Dalbe Digital Agency csapatához, ahol Shopify fejlesztőként egyedi webshopokat és e-kereskedelmi funkciókat építek.</p>
       <p lang="en">I am a third-year Computer Science student at UMFST in Târgu Mureș. Besides university theory, I have always been drawn to practical implementation, which is why I joined the Dalbe Digital Agency team. Here, as a Shopify Developer, I build custom webshops and e-commerce features.</p>
-      <p lang="hu" style="margin-bottom: 0;">Nagyon szeretem, ha a munkámnak kézzelfogható, vizuális eredménye van. Legyen szó egy komplex Liquid sablon megírásáról, vagy épp egy saját gamifikált mobilalkalmazás fejlesztéséről Flutterben, a lényeg, hogy interaktív és jól használható felületeket alkossak.</p>
-      <p lang="en" style="margin-bottom: 0;">I really enjoy when my work has a tangible, visual result. Whether it's writing a complex Liquid template or developing my own gamified mobile application in Flutter, my goal is to create interactive and user-friendly interfaces.</p>
     </section>
 
-    <!-- Szakmai Tapasztalat -->
+    <!-- Szakmai Tapasztalat & Kiemelt Projekt -->
     <section class="cv-section animate-on-load delay-2">
       <h2>
-        <span lang="hu">Szakmai Tapasztalat</span>
-        <span lang="en">Professional Experience</span>
+        <span lang="hu">Szakmai Tapasztalat & Projektek</span>
+        <span lang="en">Professional Experience & Projects</span>
       </h2>
       <table class="cv-table">
         <tr>
@@ -276,16 +291,25 @@
             <ul lang="hu">
               <li>E-kereskedelmi (Shopify) áruházak egyedi fejlesztése és testreszabása ügyfelek számára.</li>
               <li>Liquid sablonok írása, reszponzív HTML/CSS és JavaScript kódolás.</li>
-              <li>Munkahelyi dokumentumgeneráló eszközök építése és automatizálása Python (Flask) alapokon.</li>
             </ul>
             <ul lang="en">
-              <li>Custom development and customization of e-commerce (Shopify) stores for clients.</li>
+              <li>Custom development and customization of e-commerce stores for clients.</li>
               <li>Writing Liquid templates, responsive HTML/CSS, and JavaScript coding.</li>
-              <li>Building and automating workplace document generation tools based on Python (Flask).</li>
             </ul>
           </td>
         </tr>
       </table>
+
+      <!-- ITT A KOKTÉL APPLIKÁCIÓ KÁRTYÁJA -->
+      <div class="project-showcase">
+        <h3 style="color: #00F3FF; margin-top:0;">🍸 Mit igyunk ma este? (Neon Cocktail Bar)</h3>
+        <p lang="hu">Komplett, asztali webre optimalizált Flutter alkalmazás cyberpunk dizájnnal, helyi okos szűréssel és TheCocktailDB API integrációval.</p>
+        <p lang="en">Complex, desktop web-optimized Flutter application with cyberpunk design, smart local filtering and TheCocktailDB API integration.</p>
+        <a href="https://erikcsatlos12.github.io/neon-cocktail-bar/" target="_blank" class="project-btn">
+          <span lang="hu">Alkalmazás Indítása &rarr;</span>
+          <span lang="en">Launch Application &rarr;</span>
+        </a>
+      </div>
     </section>
 
     <!-- Tanulmányok -->
@@ -297,38 +321,23 @@
       <table class="cv-table">
         <tr>
           <td class="timeline-col">
-            <span lang="hu">2023 – Jelenleg<br><small>(3. évfolyam)</small></span>
-            <span lang="en">2023 – Present<br><small>(3rd year)</small></span>
+            <span lang="hu">2023 – Jelenleg</span>
+            <span lang="en">2023 – Present</span>
           </td>
           <td class="content-col">
-            <h3>
-              <span lang="hu">Informatika (BSc)</span>
-              <span lang="en">Computer Science (BSc)</span>
-            </h3>
-            <div class="org">
-              <span lang="hu">UMFST, Marosvásárhely</span>
-              <span lang="en">UMFST, Târgu Mureș</span>
-            </div>
-            <ul lang="hu">
-              <li>Főbb fókuszterületek: Adatszerkezetek, Gráfelmélet, Hálózatok, Operációs Rendszerek.</li>
-            </ul>
-            <ul lang="en">
-              <li>Main focus areas: Data Structures, Graph Theory, Networking, Operating Systems.</li>
-            </ul>
+            <h3>Informatika (BSc)</h3>
+            <div class="org">UMFST, Marosvásárhely</div>
           </td>
         </tr>
       </table>
     </section>
 
-    <!-- Képgaléria (Saját munkák/pillanatok) -->
+    <!-- Képgaléria -->
     <section class="cv-section animate-on-load delay-4">
       <h2>
-        <span lang="hu">Galéria / Projektek</span>
-        <span lang="en">Gallery / Projects</span>
+        <span lang="hu">Galéria</span>
+        <span lang="en">Gallery</span>
       </h2>
-      <p lang="hu">Pillanatképek a munkáimból és fejlesztéseimből:</p>
-      <p lang="en">Snapshots of my work and developments:</p>
-      
       <div class="gallery-grid">
         <img src="profilkep.jpg" alt="Projekt 1" class="gallery-item" loading="lazy">
         <img src="shopify-badge.png" alt="Projekt 2" class="gallery-item" loading="lazy">
@@ -341,48 +350,34 @@
         <span lang="hu">Készségek & Tanúsítványok</span>
         <span lang="en">Skills & Certifications</span>
       </h2>
-      
       <div class="chip-group">
-        <div class="chip-group-title">
-          <span lang="hu">Szakmai Tanúsítványok</span>
-          <span lang="en">Professional Certifications</span>
-        </div>
         <a href="https://www.credly.com/earner/earned/share/724f7b61-3d36-419e-8187-4afe55288e49" target="_blank" rel="noopener" class="badge-card">
-          <img src="shopify-badge.png" alt="Shopify Development Fundamentals Badge">
+          <img src="shopify-badge.png" alt="Shopify Badge">
           <div class="badge-card-text">
             <span class="badge-card-title">Shopify Development Fundamentals</span>
             <span class="badge-card-subtitle">Credly Verified</span>
           </div>
         </a>
       </div>
-
       <div class="chip-group">
-        <div class="chip-group-title">
-          <span lang="hu">Fejlesztési Technológiák</span>
-          <span lang="en">Development Technologies</span>
-        </div>
-        <span class="chip">Shopify Liquid</span>
         <span class="chip">Flutter / Dart</span>
+        <span class="chip">Shopify Liquid</span>
         <span class="chip">React</span>
         <span class="chip">Python (Flask)</span>
-        <span class="chip">Java</span>
         <span class="chip">JavaScript</span>
       </div>
     </section>
 
-    <!-- Működő Kapcsolat Űrlap (FormSubmit + SAJÁT Invisible reCAPTCHA) -->
+    <!-- Kapcsolat Űrlap -->
     <section class="cv-section animate-on-load delay-5">
       <h2>
         <span lang="hu">Kapcsolatfelvétel</span>
         <span lang="en">Contact Me</span>
       </h2>
-      <p lang="hu">Küldj nekem üzenetet, és hamarosan válaszolok!</p>
-      <p lang="en">Send me a message and I will get back to you shortly!</p>
-
       <form id="contact-form" action="https://formsubmit.co/erik.csatlos@dalbe.ro" method="POST">
         <input type="hidden" name="_subject" value="Új portfólió üzenet!">
         <input type="hidden" name="_captcha" value="false"> 
-        <input type="hidden" name="_autoresponse" value="Szia! Megkaptam az üzenetedet a portfóliómon keresztül. Hamarosan felveszem veled a kapcsolatot! Üdvözlettel: Erik Csatlos">
+        <input type="hidden" name="_autoresponse" value="Szia! Megkaptam az üzenetedet. Hamarosan válaszolok! Üdv: Erik Csatlos">
 
         <div class="form-group">
           <input type="text" name="Név" required placeholder="Neved (Name)">
@@ -394,7 +389,6 @@
           <textarea name="Üzenet" required placeholder="Üzeneted... (Message)"></textarea>
         </div>
         
-        <!-- SAJÁT Láthatatlan reCAPTCHA gomb -->
         <button 
           class="g-recaptcha btn-submit" 
           data-sitekey="6LeH7vEtAAAAAAlckh20U4t0EvSmmWhXee_Y-zd8" 
@@ -408,7 +402,6 @@
 
   </main>
 
-  <!-- JavaScript Logika -->
   <script>
     function setLang(lang) {
       document.body.className = 'lang-' + lang;
