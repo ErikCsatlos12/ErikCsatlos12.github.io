@@ -217,10 +217,10 @@
     }
     .btn-submit:hover { background: var(--accent-hover); transform: translateY(-2px); }
 
+    /* RECAPTCHA ELREJTÉSE */
     .grecaptcha-badge {
-      bottom: 20px !important;
-      right: 20px !important;
-      z-index: 1000;
+      visibility: hidden !important;
+      opacity: 0 !important;
     }
 
     @media (max-width: 650px) {
@@ -300,9 +300,12 @@
         </tr>
       </table>
 
-      <!-- ITT A KOKTÉL APPLIKÁCIÓ KÁRTYÁJA -->
+      <!-- KOKTÉL APPLIKÁCIÓ KÁRTYÁJA -->
       <div class="project-showcase">
-        <h3 style="color: #00F3FF; margin-top:0;">🍸 Mit igyunk ma este? (Neon Cocktail Bar)</h3>
+        <h3 style="color: #00F3FF; margin-top:0;">
+          <span lang="hu">🍸 Mit igyunk ma este? (Neon Cocktail Bar)</span>
+          <span lang="en">🍸 What should we drink tonight? (Neon Cocktail Bar)</span>
+        </h3>
         <p lang="hu">Komplett, asztali webre optimalizált Flutter alkalmazás cyberpunk dizájnnal, helyi okos szűréssel és TheCocktailDB API integrációval.</p>
         <p lang="en">Complex, desktop web-optimized Flutter application with cyberpunk design, smart local filtering and TheCocktailDB API integration.</p>
         <a href="https://erikcsatlos12.github.io/neon-cocktail-bar/" target="_blank" class="project-btn">
@@ -325,7 +328,10 @@
             <span lang="en">2023 – Present</span>
           </td>
           <td class="content-col">
-            <h3>Informatika (BSc)</h3>
+            <h3>
+              <span lang="hu">Informatika (BSc)</span>
+              <span lang="en">Computer Science (BSc)</span>
+            </h3>
             <div class="org">UMFST, Marosvásárhely</div>
           </td>
         </tr>
@@ -380,13 +386,16 @@
         <input type="hidden" name="_autoresponse" value="Szia! Megkaptam az üzenetedet. Hamarosan válaszolok! Üdv: Erik Csatlos">
 
         <div class="form-group">
-          <input type="text" name="Név" required placeholder="Neved (Name)">
+          <!-- Hozzáadott ID a JavaScript számára -->
+          <input type="text" id="input-name" name="Név" required placeholder="Neved">
         </div>
         <div class="form-group">
-          <input type="email" name="email" required placeholder="E-mail címed (Email)">
+          <!-- Hozzáadott ID a JavaScript számára -->
+          <input type="email" id="input-email" name="email" required placeholder="E-mail címed">
         </div>
         <div class="form-group">
-          <textarea name="Üzenet" required placeholder="Üzeneted... (Message)"></textarea>
+          <!-- Hozzáadott ID a JavaScript számára -->
+          <textarea name="Üzenet" id="input-message" required placeholder="Üzeneted..."></textarea>
         </div>
         
         <button 
@@ -405,11 +414,25 @@
   <script>
     function setLang(lang) {
       document.body.className = 'lang-' + lang;
+      
+      // Gombok aktív állapotának frissítése
       document.getElementById('btn-hu').classList.remove('active');
       document.getElementById('btn-en').classList.remove('active');
       document.getElementById('btn-' + lang).classList.add('active');
+      
       localStorage.setItem('cv-lang', lang);
       document.documentElement.lang = lang;
+
+      // Dinamikus placeholder (űrlap) frissítés
+      if (lang === 'hu') {
+        document.getElementById('input-name').placeholder = "Neved";
+        document.getElementById('input-email').placeholder = "E-mail címed";
+        document.getElementById('input-message').placeholder = "Üzeneted...";
+      } else {
+        document.getElementById('input-name').placeholder = "Name";
+        document.getElementById('input-email').placeholder = "Email Address";
+        document.getElementById('input-message').placeholder = "Message...";
+      }
     }
 
     document.addEventListener('DOMContentLoaded', () => {
