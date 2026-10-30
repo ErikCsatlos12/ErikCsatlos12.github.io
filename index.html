@@ -8,9 +8,19 @@
   <!-- SEO Frissítés -->
   <meta name="description" content="Erik Csatlos - Informatika szakos hallgató és Shopify szoftverfejlesztő. Tekintsd meg a projektjeimet és szakmai önéletrajzomat.">
   <meta name="keywords" content="Shopify, Developer, Flutter, UMFST, Webfejlesztő, Erik Csatlos, Marosvásárhely">
+  <link rel="canonical" href="https://erikcsatlos12.github.io/">
   <meta property="og:title" content="Erik Csatlos - Shopify Developer Portfolio">
   <meta property="og:description" content="Kézzelfogható vizuális eredmények, komplex Liquid sablonok és egyedi webshopok fejlesztése.">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://erikcsatlos12.github.io/">
+  <meta property="og:image" content="https://erikcsatlos12.github.io/profilkep.jpg">
+  <meta property="og:image:alt" content="Erik Csatlos profilképe">
+  <meta property="og:locale" content="hu_HU">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Erik Csatlos - Shopify Developer Portfolio">
+  <meta name="twitter:description" content="Shopify fejlesztő és informatika szakos hallgató – projektek és önéletrajz.">
+  <meta name="twitter:image" content="https://erikcsatlos12.github.io/profilkep.jpg">
   <meta name="color-scheme" content="dark">
   <meta name="robots" content="index, follow">
 
@@ -52,6 +62,26 @@
       display: flex;
       flex-direction: column;
       gap: 32px;
+    }
+
+    /* Csak képernyőolvasónak látható szöveg (pl. űrlapcímkék) */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* Jól látható fókuszkeret billentyűzetes navigációhoz */
+    a:focus-visible,
+    button:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
     }
 
     /* CSS ANIMÁCIÓK */
@@ -153,6 +183,26 @@
     }
     .project-btn:hover { background: #00c4d0; }
 
+    /* Kiemelt Projekt Kártya – lila változat (Orbital Tracker) */
+    .project-showcase--purple {
+      background: linear-gradient(135deg, rgba(176, 38, 255, 0.08), rgba(255, 43, 214, 0.05));
+      border-color: rgba(176, 38, 255, 0.35);
+    }
+    .project-showcase--purple:hover {
+      border-color: #B026FF;
+      box-shadow: 0 0 20px rgba(176, 38, 255, 0.25);
+    }
+    .project-showcase--purple h3 { color: #D08BFF; margin-top: 0; }
+    .project-btn--purple { background: #B026FF; color: #ffffff; }
+    .project-btn--purple:hover { background: #9310e0; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 4px; }
+    .project-tag {
+      font-size: 12px; padding: 4px 10px; border-radius: 6px;
+      border: 1px solid rgba(176, 38, 255, 0.4);
+      background: rgba(176, 38, 255, 0.08);
+      color: #D08BFF;
+    }
+
     /* Chips & Badges */
     .chip-group { margin-bottom: 24px; }
     .chip-group:last-child { margin-bottom: 0; }
@@ -195,6 +245,7 @@
       box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
       border-color: var(--accent);
     }
+    .gallery-link { display: block; border-radius: 8px; }
 
     /* Kapcsolat Űrlap Dizájn */
     .form-group { margin-bottom: 16px; }
@@ -223,6 +274,16 @@
       opacity: 0 !important;
     }
 
+    /* A rejtett jelvény helyett kötelező reCAPTCHA-tájékoztató */
+    .recaptcha-note {
+      margin: 12px 0 0;
+      font-size: 12px;
+      line-height: 1.5;
+      color: var(--text-muted);
+      text-align: center;
+    }
+    .recaptcha-note a { color: var(--accent); }
+
     @media (max-width: 650px) {
       .header-card { flex-direction: column; text-align: center; padding: 24px; }
       .header-card .links { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
@@ -234,6 +295,21 @@
       .cv-table tr:last-child { border-bottom: none; padding-bottom: 0; }
       .timeline-col { padding-right: 0; margin-bottom: 8px; color: var(--accent); }
     }
+
+    /* Csökkentett mozgás: akinek a rendszerében be van kapcsolva, annak nincs animáció */
+    @media (prefers-reduced-motion: reduce) {
+      .animate-on-load { animation: none; opacity: 1; }
+      *, *::before, *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .header-card:hover,
+      .chip:hover,
+      .badge-card:hover,
+      .gallery-item:hover,
+      .btn-submit:hover { transform: none; }
+    }
   </style>
 </head>
 <body class="lang-hu">
@@ -241,9 +317,9 @@
     
     <!-- Nyelvváltó -->
     <div class="top-bar animate-on-load">
-      <div class="lang-picker">
-        <button id="btn-hu" class="active" onclick="setLang('hu')">HU</button>
-        <button id="btn-en" onclick="setLang('en')">EN</button>
+      <div class="lang-picker" role="group" aria-label="Nyelv / Language">
+        <button type="button" id="btn-hu" class="active" aria-pressed="true" onclick="setLang('hu')">HU</button>
+        <button type="button" id="btn-en" aria-pressed="false" onclick="setLang('en')">EN</button>
       </div>
     </div>
 
@@ -308,7 +384,28 @@
         </h3>
         <p lang="hu">Komplett, asztali webre optimalizált Flutter alkalmazás cyberpunk dizájnnal, helyi okos szűréssel és TheCocktailDB API integrációval.</p>
         <p lang="en">Complex, desktop web-optimized Flutter application with cyberpunk design, smart local filtering and TheCocktailDB API integration.</p>
-        <a href="https://erikcsatlos12.github.io/neon-cocktail-bar/" target="_blank" class="project-btn">
+        <a href="https://erikcsatlos12.github.io/neon-cocktail-bar/" target="_blank" rel="noopener" class="project-btn">
+          <span lang="hu">Alkalmazás Indítása &rarr;</span>
+          <span lang="en">Launch Application &rarr;</span>
+        </a>
+      </div>
+
+      <!-- ISS-KÖVETŐ APPLIKÁCIÓ KÁRTYÁJA -->
+      <div class="project-showcase project-showcase--purple">
+        <h3>
+          <span lang="hu">🛰️ ORBITAL//TRACKER – Élő ISS-követő radar</span>
+          <span lang="en">🛰️ ORBITAL//TRACKER – Live ISS Radar</span>
+        </h3>
+        <p lang="hu">Valós idejű Flutter webalkalmazás, amely 5 másodpercenként követi a Nemzetközi Űrállomást a NASA éjszakai városfény-térképén: megtett és várható pályaív, látótávolság-kör, élő telemetria (magasság, sebesség, ország), kapcsolatjelző és automatikus újrapróbálás.</p>
+        <p lang="en">Real-time Flutter web app tracking the International Space Station every 5 seconds on NASA's Earth at Night map: past and predicted ground track, visibility footprint, live telemetry (altitude, speed, country), connection status and automatic retries.</p>
+        <div class="project-tags">
+          <span class="project-tag">Flutter Web</span>
+          <span class="project-tag">REST API</span>
+          <span class="project-tag">flutter_map</span>
+          <span class="project-tag">NASA GIBS</span>
+          <span class="project-tag">CustomPainter</span>
+        </div>
+        <a href="https://erikcsatlos12.github.io/orbital-tracker/" target="_blank" rel="noopener" class="project-btn project-btn--purple">
           <span lang="hu">Alkalmazás Indítása &rarr;</span>
           <span lang="en">Launch Application &rarr;</span>
         </a>
@@ -345,8 +442,14 @@
         <span lang="en">Gallery</span>
       </h2>
       <div class="gallery-grid">
-        <img src="profilkep.jpg" alt="Projekt 1" class="gallery-item" loading="lazy">
-        <img src="shopify-badge.png" alt="Projekt 2" class="gallery-item" loading="lazy">
+        <a href="https://erikcsatlos12.github.io/neon-cocktail-bar/" target="_blank" rel="noopener" class="gallery-link">
+          <img src="screenshot-neon-bar.png" alt="Neon Cocktail Bar – a Flutter koktélajánló alkalmazás képernyőképe" class="gallery-item" loading="lazy">
+        </a>
+        <a href="https://erikcsatlos12.github.io/orbital-tracker/" target="_blank" rel="noopener" class="gallery-link">
+          <img src="screenshot-orbital-tracker.png" alt="ORBITAL//TRACKER – az ISS élő pozíciója a NASA éjszakai térképén" class="gallery-item" loading="lazy">
+        </a>
+        <img src="profilkep.jpg" alt="Erik Csatlos portréfotója" class="gallery-item" loading="lazy">
+        <img src="shopify-badge.png" alt="Shopify Development Fundamentals tanúsítvány jelvénye" class="gallery-item" loading="lazy">
       </div>
     </section>
 
@@ -387,14 +490,26 @@
 
         <div class="form-group">
           <!-- Hozzáadott ID a JavaScript számára -->
-          <input type="text" id="input-name" name="Név" required placeholder="Neved">
+          <label for="input-name" class="sr-only">
+            <span lang="hu">Név</span>
+            <span lang="en">Name</span>
+          </label>
+          <input type="text" id="input-name" name="Név" autocomplete="name" required placeholder="Neved">
         </div>
         <div class="form-group">
           <!-- Hozzáadott ID a JavaScript számára -->
-          <input type="email" id="input-email" name="email" required placeholder="E-mail címed">
+          <label for="input-email" class="sr-only">
+            <span lang="hu">E-mail cím</span>
+            <span lang="en">Email address</span>
+          </label>
+          <input type="email" id="input-email" name="email" autocomplete="email" required placeholder="E-mail címed">
         </div>
         <div class="form-group">
           <!-- Hozzáadott ID a JavaScript számára -->
+          <label for="input-message" class="sr-only">
+            <span lang="hu">Üzenet</span>
+            <span lang="en">Message</span>
+          </label>
           <textarea name="Üzenet" id="input-message" required placeholder="Üzeneted..."></textarea>
         </div>
         
@@ -406,6 +521,18 @@
           <span lang="hu">Üzenet Küldése</span>
           <span lang="en">Send Message</span>
         </button>
+
+        <!-- A rejtett reCAPTCHA jelvény helyett kötelező tájékoztatás (Google feltételei szerint) -->
+        <p class="recaptcha-note" lang="hu">
+          Az oldalt a reCAPTCHA védi, és a Google
+          <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Adatvédelmi irányelvei</a> és
+          <a href="https://policies.google.com/terms" target="_blank" rel="noopener">Általános Szerződési Feltételei</a> érvényesek.
+        </p>
+        <p class="recaptcha-note" lang="en">
+          This site is protected by reCAPTCHA and the Google
+          <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Privacy Policy</a> and
+          <a href="https://policies.google.com/terms" target="_blank" rel="noopener">Terms of Service</a> apply.
+        </p>
       </form>
     </section>
 
@@ -419,6 +546,10 @@
       document.getElementById('btn-hu').classList.remove('active');
       document.getElementById('btn-en').classList.remove('active');
       document.getElementById('btn-' + lang).classList.add('active');
+
+      // Képernyőolvasónak: melyik nyelv gombja van lenyomva
+      document.getElementById('btn-hu').setAttribute('aria-pressed', lang === 'hu' ? 'true' : 'false');
+      document.getElementById('btn-en').setAttribute('aria-pressed', lang === 'en' ? 'true' : 'false');
       
       localStorage.setItem('cv-lang', lang);
       document.documentElement.lang = lang;
